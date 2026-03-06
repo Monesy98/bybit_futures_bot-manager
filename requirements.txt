@@ -1,0 +1,14 @@
+ccxt>=4.0.0
+ccxtpro>=1.0.0
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+python-telegram-bot>=20.0
+aiofiles>=23.0.0
+jinja2>=3.1.0
+python-dotenv>=1.0.0
+asyncsqlite>=0.5.0
+pandas>=2.0.0
+pandas-ta>=0.3.14b0
+sqlalchemy>=1.4.0
+aiosqlite>=0.19.0
+python-multipart>=0.0.6
