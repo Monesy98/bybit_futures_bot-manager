@@ -10,7 +10,7 @@
 На данный момент 2 стратегии. Добавление стратегий на python в папку strategies, добавляем импорт в main и поле в index.html
 
 Процесс установки:
-- Требуется python3.12
+- Требуется python3.11
 - Создаем папку mkdir /opt/bybit_futures_bot/
 - Установите python3-venv, если не установлен
 - sudo apt update && sudo apt install python3-venv -y
