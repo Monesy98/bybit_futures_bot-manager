@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crypto Trading Bot</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .positive { color: green; }
+        .negative { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Crypto Trading Bot Dashboard</h1>
+    
+    <h2>Текущие позиции</h2>
+    <table>
+        <tr>
+            <th>Символ</th>
+            <th>Сторона</th>
+            <th>Цена входа</th>
+            <th>Объем</th>
+        </tr>
+        {% for pos in positions %}
+        <tr>
+            <td>{{ pos.symbol }}</td>
+            <td class="{% if pos.side == 'long' %}positive{% else %}negative{% endif %}">{{ pos.side }}</td>
+            <td>{{ pos.entry_price }}</td>
+            <td>{{ pos.amount }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Последние сделки</h2>
+    <table>
+        <tr>
+            <th>Время</th>
+            <th>Символ</th>
+            <th>Сторона</th>
+            <th>Цена</th>
+            <th>Объем</th>
+            <th>Стратегия</th>
+        </tr>
+        {% for trade in trades %}
+        <tr>
+            <td>{{ trade.timestamp }}</td>
+            <td>{{ trade.symbol }}</td>
+            <td>{{ trade.side }}</td>
+            <td>{{ trade.price }}</td>
+            <td>{{ trade.amount }}</td>
+            <td>{{ trade.strategy }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Управление стратегиями</h2>
+    <form action="/start_strategy" method="post">
+        <label for="strategy_name">Стратегия:</label>
+		<select name="strategy_name" id="strategy_name">
+			<option value="ma_cross">Moving Average Cross</option>
+			<option value="chandelier_exit">Chandelier Exit (Classic)</option>
+		</select>
+		<label for="leverage">Плечо (x):</label>
+		<input type="number" name="leverage" id="leverage" value="3" min="1" max="100">
+        <label for="symbol">Символ:</label>
+        <input type="text" name="symbol" id="symbol" value="BTC/USDT">
+        <button type="submit">Запустить</button>
+    </form>
+    <form action="/stop_all" method="post">
+        <button type="submit">Остановить все</button>
+    </form>
+</body>
+</html>
